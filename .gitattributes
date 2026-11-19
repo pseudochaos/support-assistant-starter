@@ -1,0 +1,5 @@
+# uv.lock is generated: on a merge conflict git keeps your version without
+# conflict markers, and `uv lock` then rebuilds it from the merged pyproject.toml
+uv.lock merge=binary
+# Both sides only add lines here: keep them all instead of reporting a conflict
+.gitignore merge=union

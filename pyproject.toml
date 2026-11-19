@@ -1,0 +1,29 @@
+[project]
+name = "support-assistant"
+version = "0.1.0"
+description = "Starter code for the course practicals: a support assistant for an online accounting service, built up practical by practical"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+# Each practical adds the dependencies it needs; add your own with `uv add`.
+dependencies = [
+    "langchain>=1.4,<2",
+    "pydantic>=2.7,<3",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/support_assistant"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Course fakes live in tests/starter/: "from fakes import FakeModel" works from any test
+pythonpath = ["tests/starter"]
