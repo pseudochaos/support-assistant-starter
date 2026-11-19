@@ -7,3 +7,4 @@ __pycache__/
 .vscode/
 # Logs may hold customer text: they stay local
 calls.jsonl
+retrieval.jsonl

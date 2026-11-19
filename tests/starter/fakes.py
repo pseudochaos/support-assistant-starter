@@ -3,6 +3,7 @@
 Course file: do not edit, the next practical may update it.
 """
 
+from langchain_core.embeddings import DeterministicFakeEmbedding
 from langchain_core.exceptions import OutputParserException
 from langchain_core.language_models import BaseChatModel
 from langchain_core.messages import AIMessage
@@ -65,3 +66,28 @@ class FakeModel(BaseChatModel):
             return {"raw": raw, "parsed": reply, "parsing_error": None} if include_raw else reply
 
         return RunnableLambda(call)
+
+
+class FakeEmbeddings(DeterministicFakeEmbedding):
+    """DeterministicFakeEmbedding from LangChain that also records every text it embeds.
+
+    The same text always gets the same vector, and different texts get unrelated
+    ones: similarity here says nothing about meaning. To make a fragment the
+    nearest one to a question in a test, ask a question equal to its text.
+    `embedded` lists every text sent for embedding, in order: a re-index of an
+    unchanged corpus through your cache must not add anything to it.
+    The vector also depends on `model`, so two fakes with different `model`
+    are incompatible, like two real embedding models.
+    """
+
+    model: str = "fake-embedding"
+    size: int = 64
+    embedded: list = Field(default_factory=list)
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        self.embedded.extend(texts)
+        return super().embed_documents([f"{self.model}:{t}" for t in texts])
+
+    def embed_query(self, text: str) -> list[float]:
+        self.embedded.append(text)
+        return super().embed_query(f"{self.model}:{text}")

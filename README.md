@@ -9,6 +9,7 @@
 | Практична | Опис | Реліз |
 | --- | --- | --- |
 | ПР2. Мінімальний асистент зі структурованим виходом | [`docs/triage.md`](docs/triage.md) | `practical/triage` |
+| ПР3. RAG над базою знань компанії | [`docs/knowledge-base.md`](docs/knowledge-base.md) | `practical/knowledge-base` |
 
 Що саме додав реліз, показує порівняння двох тегів на GitHub або `git diff <тег> <тег> --stat`.
 
@@ -81,7 +82,7 @@ git commit --no-edit
 
 | Файли | Чиї | Правило |
 | --- | --- | --- |
-| `README.md`, `docs/`, `tests/starter/`, `.env.example`, `.gitattributes`, `LICENSE` | курсу | не змінюйте: наступна практична може їх оновити |
+| `README.md`, `docs/`, `kb/`, `tests/starter/`, `.env.example`, `.gitattributes`, `LICENSE` | курсу | не змінюйте: наступна практична може їх оновити |
 | `src/`, `prompts/`, `SPEC.md`, `tests/` (крім `tests/starter/`), `reports/`, набори для оцінювання і все, що ви створюєте самі | ваші | курс їх не змінює; каркас, що приходить з новою практичною, з цієї миті теж ваш |
 | `pyproject.toml`, `uv.lock`, `.gitignore` | спільні | додавайте своє (`uv add <пакет>`); курс дописує сюди залежності нової практичної |
 
