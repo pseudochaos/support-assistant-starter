@@ -8,8 +8,13 @@ license = "MIT"
 # Each practical adds the dependencies it needs; add your own with `uv add`.
 dependencies = [
     "langchain>=1.4,<2",
+    "langchain-google-genai>=4.4,<5",
     "pydantic>=2.7,<3",
+    "python-dotenv>=1.2",
 ]
+
+[project.scripts]
+assistant = "support_assistant.cli:main"
 
 [dependency-groups]
 dev = [
@@ -27,3 +32,5 @@ packages = ["src/support_assistant"]
 testpaths = ["tests"]
 # Course fakes live in tests/starter/: "from fakes import FakeModel" works from any test
 pythonpath = ["tests/starter"]
+# Noise from the provider SDK, not from your code
+filterwarnings = ["ignore::SyntaxWarning"]
